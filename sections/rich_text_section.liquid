@@ -1,0 +1,53 @@
+{% stylesheet %}
+{% endstylesheet %}
+
+<div class="full-width {{ section.settings | class_list }} color-{{ section.settings.color_scheme }}">
+  {% content_for "blocks" %}
+</div>
+
+{% schema %}
+{
+  "name": "Rich Text Section",
+  "class": "section--has-background",
+  "blocks": [{ "type": "@theme" }, { "type": "@app" }],
+  "settings": [
+    {
+      "type": "style.spacing_panel",
+      "id": "spacing",
+      "label": "Spacing",
+      "default": {
+        "padding": "20px"
+      }
+    },
+    {
+      "type": "style.layout_panel",
+      "id": "layout",
+      "label": "Layout",
+      "default": {
+        "flex-direction": "row",
+        "gap": "20px",
+        "justify-content": "center",
+        "align-items": "center",
+        "@media (--mobile)": {
+          "flex-wrap": "wrap"
+        }
+      }
+    },
+    {
+      "type": "header",
+      "content": "Color"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rich Text Section"
+    }
+  ]
+}
+{% endschema %}

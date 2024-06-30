@@ -1,0 +1,76 @@
+<!-- blocks/button_block.liquid -->
+<div
+  class="rich-text__buttons{% if block.settings.button_label != blank and block.settings.button_label_2 != blank %} rich-text__buttons--multiple{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+  {{ block.shopify_attributes }}
+  {% if settings.animations_reveal_on_scroll %}
+    data-cascade
+    style="--animation-order: {{ forloop.index }};"
+  {% endif %}
+>
+  {% if block.settings.button_label != blank %}
+    <a
+      {% if block.settings.button_link == blank %}
+        role="link" aria-disabled="true"
+      {% else %}
+        href="{{ block.settings.button_link }}"
+      {% endif %}
+      class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+    >
+      {{ block.settings.button_label | escape }}
+    </a>
+  {% endif %}
+  {% if block.settings.button_label_2 != blank %}
+    <a
+      {% if block.settings.button_link_2 == blank %}
+        role="link" aria-disabled="true"
+      {% else %}
+        href="{{ block.settings.button_link_2 }}"
+      {% endif %}
+      class="button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
+    >
+      {{ block.settings.button_label_2 | escape }}
+    </a>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Button Block",
+  "settings": [
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Button 1"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_style_secondary",
+      "label": "Secondary Style",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "button_label_2",
+      "label": "Button Label 2",
+      "default": "Button 2"
+    },
+    {
+      "type": "url",
+      "id": "button_link_2",
+      "label": "Button Link 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_style_secondary_2",
+      "label": "Secondary Style 2",
+      "default": false
+    }
+  ]
+}
+{% endschema %}

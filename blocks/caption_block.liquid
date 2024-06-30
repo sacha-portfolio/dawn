@@ -1,0 +1,45 @@
+<!-- blocks/caption_block.liquid -->
+<p
+  class="rich-text__caption {{ block.settings.text_style }} {{ block.settings.text_style }}--{{ block.settings.text_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+  {{ block.shopify_attributes }}
+  {% if settings.animations_reveal_on_scroll %}
+    data-cascade
+    style="--animation-order: {{ forloop.index }};"
+  {% endif %}
+>
+  {{ block.settings.caption | escape }}
+</p>
+{% schema %}
+{
+  "name": "Caption Block",
+  "settings": [
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Caption",
+      "default": "Default Caption"
+    },
+    {
+      "type": "select",
+      "id": "text_style",
+      "label": "Text Style",
+      "options": [
+        { "value": "subtitle", "label": "Subtitle" },
+        { "value": "caption-with-letter-spacing", "label": "Caption with Letter Spacing" }
+      ],
+      "default": "caption-with-letter-spacing"
+    },
+    {
+      "type": "select",
+      "id": "text_size",
+      "label": "Text Size",
+      "options": [
+        { "value": "small", "label": "Small" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "large", "label": "Large" }
+      ],
+      "default": "medium"
+    }
+  ]
+}
+{% endschema %}
